@@ -1,6 +1,0 @@
-SELECT DATE(created_at) AS day, SUM(amount) AS total
-FROM gateway_transactions
-WHERE created_at >= '2026-09-27'
-  AND created_at <  '2026-09-30'
-  AND deleted_at IS NULL
-GROUP BY DATE(created_at);
