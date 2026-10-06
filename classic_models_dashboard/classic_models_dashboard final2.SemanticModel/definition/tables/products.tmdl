@@ -1,0 +1,92 @@
+table products
+	lineageTag: 8553a525-cdd0-48a4-9c71-69ee63fd8b51
+
+	column productCode
+		dataType: string
+		lineageTag: ffead83b-0871-492d-8e6f-a042b1a59811
+		summarizeBy: none
+		sourceColumn: productCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column productName
+		dataType: string
+		lineageTag: 1e80412b-d93c-4267-9b09-e83abc7c128b
+		summarizeBy: none
+		sourceColumn: productName
+
+		annotation SummarizationSetBy = Automatic
+
+	column productLine
+		dataType: string
+		lineageTag: 031e0897-d4f8-4480-a297-813bedf227b8
+		summarizeBy: none
+		sourceColumn: productLine
+
+		annotation SummarizationSetBy = Automatic
+
+	column productScale
+		dataType: string
+		lineageTag: 58da1563-6db4-49cf-8a75-84e7436ba27b
+		summarizeBy: none
+		sourceColumn: productScale
+
+		annotation SummarizationSetBy = Automatic
+
+	column productVendor
+		dataType: string
+		lineageTag: df556d6e-b0c6-442a-9213-64de82a6273e
+		summarizeBy: none
+		sourceColumn: productVendor
+
+		annotation SummarizationSetBy = Automatic
+
+	column productDescription
+		dataType: string
+		lineageTag: ea610600-5df7-4e52-aa5e-04be0e9b1f0f
+		summarizeBy: none
+		sourceColumn: productDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantityInStock
+		dataType: int64
+		formatString: 0
+		lineageTag: 510c2de7-fb7c-4735-a830-fcb6e53ae4cb
+		summarizeBy: none
+		sourceColumn: quantityInStock
+
+		annotation SummarizationSetBy = Automatic
+
+	column buyPrice
+		dataType: string
+		lineageTag: f4152d21-f5b3-4d37-ac66-5ebefd70e217
+		summarizeBy: none
+		sourceColumn: buyPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSRP
+		dataType: double
+		lineageTag: 28679ffc-8943-426b-91c2-b8e920dc3f03
+		summarizeBy: none
+		sourceColumn: MSRP
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition products = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\tasks\classic_models_dashboard\data\products.csv"),[Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"productCode", type text}, {"productName", type text}, {"productLine", type text}, {"productScale", type text}, {"productVendor", type text}, {"productDescription", type text}, {"quantityInStock", Int64.Type}, {"buyPrice", type text}, {"MSRP", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

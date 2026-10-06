@@ -1,0 +1,18 @@
+select 
+count(bookings.id) as booking_count,
+sum(booking_details.provider_price_suggestions_count * bookings.lead_price) as income_per_bookings,
+avg(booking_details.provider_price_suggestions_count) as shakhes,
+sum(case when members.app_version is null then 0 else 1 end) as intalled_app,
+sum(case when bookings.register_channel_method in (2, 11) then 1 , else 0 end) as app_booking_count
+
+from users
+inner join bookings on users.id = bookings.member_user_id
+and bookings.created_at >= '2026-03-14 11:20:00'
+and bookings.created_at <= '2026-01-15 11:20:00'
+inner join booking_details on booking_details.booking_id = bookings.id
+inner join members on members.id = users.userable_id
+
+where 
+users.userable_type = 'App\Models\Member\Member'
+and users.mobile in (
+)

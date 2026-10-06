@@ -1,0 +1,58 @@
+table orderdetails
+	lineageTag: 9fdb2ea6-5d9a-4757-8cf4-a26f7548cac8
+
+	column orderNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 696dc494-3ed1-4f9c-b446-7cdd1452ce0c
+		summarizeBy: none
+		sourceColumn: orderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column productCode
+		dataType: string
+		lineageTag: a1cf4391-6308-4b3f-80d5-2a6ee9c5836d
+		summarizeBy: none
+		sourceColumn: productCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantityOrdered
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c2ee179-5a9b-4d54-87f5-064b93c21a0e
+		summarizeBy: sum
+		sourceColumn: quantityOrdered
+
+		annotation SummarizationSetBy = Automatic
+
+	column priceEach
+		dataType: string
+		lineageTag: fbf2ffbf-276e-4f60-b762-3b7005aa8b94
+		summarizeBy: none
+		sourceColumn: priceEach
+
+		annotation SummarizationSetBy = Automatic
+
+	column orderLineNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b1c2765-2129-41fb-ba88-7ff7b1b00435
+		summarizeBy: sum
+		sourceColumn: orderLineNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition orderdetails = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\tasks\classic_models_dashboard\data\orderdetails.csv"),[Delimiter=",", Columns=5, Encoding=1256, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"orderNumber", Int64.Type}, {"productCode", type text}, {"quantityOrdered", Int64.Type}, {"priceEach", type text}, {"orderLineNumber", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

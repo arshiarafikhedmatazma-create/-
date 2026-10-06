@@ -1,0 +1,97 @@
+table orders
+	lineageTag: d7d5faeb-4f5f-48b9-8ee6-240b3f9b3035
+
+	column orderNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 54694c1e-989e-4630-b418-22713f12f525
+		summarizeBy: none
+		sourceColumn: orderNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column orderDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 13b9eb74-bbd2-45b8-bdcc-d33a9da733c6
+		summarizeBy: none
+		sourceColumn: orderDate
+
+		variation Variation
+			isDefault
+			relationship: 2f1f4790-60d1-4cf0-96cd-c458dcf4cb2b
+			defaultHierarchy: LocalDateTable_92be48bc-f937-4b31-8224-7eba4b522e8d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column requiredDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7f5537b0-3628-4b4d-a7a9-5d317b5b62f3
+		summarizeBy: none
+		sourceColumn: requiredDate
+
+		variation Variation
+			isDefault
+			relationship: dad34981-e05b-40ee-8a3f-2a077054d646
+			defaultHierarchy: LocalDateTable_7d40828e-0fa1-44de-8dfc-d955822d4b4a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column shippedDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0a4870a2-ba1d-4c68-9234-0934bf676d8a
+		summarizeBy: none
+		sourceColumn: shippedDate
+
+		variation Variation
+			isDefault
+			relationship: d4c69b1b-aed0-4022-8e9b-20513d437564
+			defaultHierarchy: LocalDateTable_742e655e-467c-42df-a117-442e5d0941aa.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column status
+		dataType: string
+		lineageTag: 56f3ee17-15a2-46e5-b673-abdc23287676
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column comments
+		dataType: string
+		lineageTag: bda10281-5cb7-43d9-af14-3aadd669d1ae
+		summarizeBy: none
+		sourceColumn: comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column customerNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: c9d6e446-a4af-47e1-a812-00acc6a2ddf6
+		summarizeBy: none
+		sourceColumn: customerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition orders = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\tasks\classic_models_dashboard\data\orders.csv"),[Delimiter=",", Columns=7, Encoding=1256, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"orderNumber", Int64.Type}, {"orderDate", type date}, {"requiredDate", type date}, {"shippedDate", type date}, {"status", type text}, {"comments", type text}, {"customerNumber", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

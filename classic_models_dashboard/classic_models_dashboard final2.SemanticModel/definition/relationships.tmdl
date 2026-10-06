@@ -1,0 +1,45 @@
+relationship AutoDetected_d4f8765f-4e25-40e8-8b1f-7fc82b3fb929
+	fromColumn: orderdetails.productCode
+	toColumn: products.productCode
+
+relationship 2f1f4790-60d1-4cf0-96cd-c458dcf4cb2b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: orders.orderDate
+	toColumn: LocalDateTable_92be48bc-f937-4b31-8224-7eba4b522e8d.Date
+
+relationship dad34981-e05b-40ee-8a3f-2a077054d646
+	joinOnDateBehavior: datePartOnly
+	fromColumn: orders.requiredDate
+	toColumn: LocalDateTable_7d40828e-0fa1-44de-8dfc-d955822d4b4a.Date
+
+relationship d4c69b1b-aed0-4022-8e9b-20513d437564
+	joinOnDateBehavior: datePartOnly
+	fromColumn: orders.shippedDate
+	toColumn: LocalDateTable_742e655e-467c-42df-a117-442e5d0941aa.Date
+
+relationship AutoDetected_a6a5a555-773b-458e-8c0c-16cdb376677f
+	fromColumn: orderdetails.orderNumber
+	toColumn: orders.orderNumber
+
+relationship 4845d4b7-7194-4aff-bc7f-19fc8362c2a0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: payments.paymentDate
+	toColumn: LocalDateTable_099e2de5-c18b-4e44-ab66-7cf083816d96.Date
+
+relationship AutoDetected_7214aa43-74df-4dda-8b05-0e773354920e
+	fromColumn: employees.officeCode
+	toColumn: offices.officeCode
+
+relationship 5316c763-2ec9-24cd-1256-038a2f4f393d
+	fromColumn: customers.salesRepEmployeeNumber
+	toColumn: employees.employeeNumber
+
+relationship 7086606b-721c-4dbe-0c86-4bc2ab91df70
+	fromColumn: payments.customerNumber
+	toColumn: customers.customerNumber
+
+relationship b104526d-e970-7055-a2ba-0e1aec34ea60
+	crossFilteringBehavior: bothDirections
+	fromColumn: orders.customerNumber
+	toColumn: customers.customerNumber
+

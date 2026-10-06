@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 529.60658870742373,
+            "y": 11.27466517791116
+          },
+          "nodeIndex": "employees",
+          "nodeLineageTag": "37dcb77a-b68e-4458-83de-43d39cf09383",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 833.24506740640049,
+            "y": 555.03587902352831
+          },
+          "nodeIndex": "orderdetails",
+          "nodeLineageTag": "9fdb2ea6-5d9a-4757-8cf4-a26f7548cac8",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1171.7944229945019,
+            "y": 486.21993579741871
+          },
+          "nodeIndex": "products",
+          "nodeLineageTag": "8553a525-cdd0-48a4-9c71-69ee63fd8b51",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 94.172112214946452,
+            "y": 0
+          },
+          "nodeIndex": "customers",
+          "nodeLineageTag": "94b161a9-5539-4c5e-9127-d4394c717ff5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 485.90374610246607,
+            "y": 523.12601912858372
+          },
+          "nodeIndex": "orders",
+          "nodeLineageTag": "d7d5faeb-4f5f-48b9-8ee6-240b3f9b3035",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 49.492137997428017,
+            "y": 584.91779467930326
+          },
+          "nodeIndex": "payments",
+          "nodeLineageTag": "8536366f-609c-48e4-83d7-6c1427282cc9",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 882.93129953742994,
+            "y": 0
+          },
+          "nodeIndex": "offices",
+          "nodeLineageTag": "8f8dcee7-d5e5-4b3f-b7e1-0df90d55cb6a",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 4
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70.955543900968848,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
